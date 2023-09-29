@@ -8,6 +8,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
 
+st.set_page_config(layout="wide")
 
 url = "https://docs.google.com/spreadsheets/d/10dpcDXGzsd8Hl_2derZ1kc6wO0tPI0N7IDs0DOGpVr8/edit?usp=sharing"
 conn = st.experimental_connection('gsheets', type=GSheetsConnection, ttl=1)
@@ -252,7 +253,7 @@ if st.button("Export PDF"):
     pdf.build(pdf_table)
     st.write('Click here to download file dataframe.pdf')
 
-@st.cache
+@st.cache_data
 def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return df.to_csv().encode('utf-8')
