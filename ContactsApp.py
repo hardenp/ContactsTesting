@@ -1,7 +1,6 @@
 import streamlit as st
 # from streamlit_dynamic_filters import DynamicFilters
 from streamlit_gsheets import GSheetsConnection
-
 import pandas as pd
 import numpy as np
 import pandasql as psql
@@ -17,7 +16,6 @@ conn = st.experimental_connection('gsheets', type=GSheetsConnection, ttl=1)
 dff = conn.read(worksheet="Master Contact List2", usecols=list(range(12)))
 dff = dff.dropna(how='all').fillna("").reset_index() #resetting index so that the index stays when merging so when saving back to google I can map the filtered row to the original DF.
 dff.rename(columns = {'index': 'gsIndex'}, inplace = True)
-
 
 
 @st.cache_data
@@ -56,7 +54,8 @@ def merge_dataframe_for_export(dfo, dfn): #df original & df new
 
 
 #Get data and clean up dataframes
-df = get_data("C:\\Users\\patri\\Documents\\Contacts\\VoteRefDataWithPrecinct3.csv")
+# df = get_data("C:\\Users\\patri\\Documents\\Contacts\\VoteRefDataWithPrecinct3.csv")
+df = get_data("VoteRefDataWithPrecinct3.csv")
 # dff = get_data("C:\\Users\\patri\\Documents\\Contacts\\ContactInformationList.csv")
 
 df = df.drop(['ID','Index','Column2','Column1','Street','DOB','Voting History','Party Affiliation'], axis=1)
