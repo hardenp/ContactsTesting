@@ -225,7 +225,7 @@ st.dataframe(
 st.caption("Voting History Represents how many times the person has voted in the past 4 years.")
 st.caption("Nothing is done to correct errors for people with multiple names, so a count of the people with the same name is provided.")
 
-if st.button("Export PDF"):
+if st.button("Export PDF (NOT WORKING)"):
     pdf = SimpleDocTemplate("dataframe.pdf", pagesize=letter)
     table_data = []
     for i, row in dfdisplay.iterrows():
@@ -252,6 +252,7 @@ if st.button("Export PDF"):
 
     pdf.build(pdf_table)
     st.write('Click here to download file dataframe.pdf')
+st.write("You can select the table, select all (cntrl + A) and then copy and paste the data.")
 
 @st.cache_data
 def convert_df(df):
