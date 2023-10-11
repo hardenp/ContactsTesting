@@ -210,7 +210,8 @@ if st.button("Save to Google Sheets"):
 
 st.subheader(f"All Filtered Registered Voters ({dfdisplay.shape[0]})")
 st.caption("Data is from 2022 some addresses may be old.")
-dfdisplay = dfdisplay[['Full Name', 'Address', 'Vote History', 'District', 'Age', 'Count']]
+#dfdisplay = dfdisplay[['Full Name', 'Address', 'Vote History', 'District', 'Age', 'Count']]
+dfdisplay = dfdisplay[['Full Name', 'Address']]
 # st.dataframe(dfdisplay)
 
 st.dataframe(
