@@ -177,36 +177,36 @@ dfdisplay = dfdisplay[dfdisplay["Name"].str.contains(name_search.upper())]
 
 #df1 = df[['a', 'b']]
 
-dffriends = dfdisplay.loc[dfdisplay['InContactList']==1]
-# dffriends = dffriends[['Full Name', 'Address_CL', 'Phone', 'e-mail', 'Age', 'Signed Petition', 'Comments', 'Source Comments', 'Church', 'index' ]]
-dffriends.drop_duplicates(subset=['gsIndex'], keep='first', inplace=True)
+# dffriends = dfdisplay.loc[dfdisplay['InContactList']==1]
+# # dffriends = dffriends[['Full Name', 'Address_CL', 'Phone', 'e-mail', 'Age', 'Signed Petition', 'Comments', 'Source Comments', 'Church', 'index' ]]
+# dffriends.drop_duplicates(subset=['gsIndex'], keep='first', inplace=True)
 
-st.subheader(f"Friends of the Cause ({dffriends.shape[0]})")
-st.caption('Goto master spreadsheet to change with this [link](%s)' % url)
+# st.subheader(f"Friends of the Cause ({dffriends.shape[0]})")
+# st.caption('Goto master spreadsheet to change with this [link](%s)' % url)
 
-newdf = st.data_editor(
-    dffriends,
-    hide_index=True,
-    column_order = ['Full Name', 'Address_CL', 'Phone', 'e-mail', 'Age', 'Signed Petition', 'Comments', 'Source Comments', 'Church'],
-    column_config={
-        "Full Name": "Name",
-        "Address_CL": "Address"
-    },
-    use_container_width = True,
-    key='dataEditor'
-)
-if st.button("Save to Google Sheets"):
-    changes = st.session_state['dataEditor']['edited_rows']
-    dffupdated = dff.copy() 
-    for index, item in changes.items(): #iterates over all the rows that have changed
-        gsIndex = int(newdf.iloc[index]['gsIndex'])
-        for key, field in item.items(): #iterates over all the fields in a row that have changes.
-            # st.write(f'for gsindex: {gsIndex} we will use{key} -> {field}')
-            dffupdated.loc[gsIndex, key] = field
-    # st.dataframe(dffupdated)
-    dffupdated = dffupdated.drop('gsIndex', axis=1)
-    # print(dffupdated.head())
-    conn.update(worksheet="Master Contact List2", data=dffupdated)
+# newdf = st.data_editor(
+#     dffriends,
+#     hide_index=True,
+#     column_order = ['Full Name', 'Address_CL', 'Phone', 'e-mail', 'Age', 'Signed Petition', 'Comments', 'Source Comments', 'Church'],
+#     column_config={
+#         "Full Name": "Name",
+#         "Address_CL": "Address"
+#     },
+#     use_container_width = True,
+#     key='dataEditor'
+# )
+# if st.button("Save to Google Sheets"):
+#     changes = st.session_state['dataEditor']['edited_rows']
+#     dffupdated = dff.copy() 
+#     for index, item in changes.items(): #iterates over all the rows that have changed
+#         gsIndex = int(newdf.iloc[index]['gsIndex'])
+#         for key, field in item.items(): #iterates over all the fields in a row that have changes.
+#             # st.write(f'for gsindex: {gsIndex} we will use{key} -> {field}')
+#             dffupdated.loc[gsIndex, key] = field
+#     # st.dataframe(dffupdated)
+#     dffupdated = dffupdated.drop('gsIndex', axis=1)
+#     # print(dffupdated.head())
+#     conn.update(worksheet="Master Contact List2", data=dffupdated)
 
 st.subheader(f"All Filtered Registered Voters ({dfdisplay.shape[0]})")
 st.caption("Data is from 2022 some addresses may be old.")
