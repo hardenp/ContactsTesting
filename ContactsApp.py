@@ -58,6 +58,8 @@ def merge_dataframe_for_export(dfo, dfn): #df original & df new
 # df = get_data("C:\\Users\\patri\\Documents\\Contacts\\VoteRefDataWithPrecinct3.csv")
 df = get_data("VoteRefDataWithPrecinct3.csv")
 # dff = get_data("C:\\Users\\patri\\Documents\\Contacts\\ContactInformationList.csv")
+#PAH
+dff = df
 
 df = df.drop(['ID','Index','Column2','Column1','Street','DOB','Voting History','Party Affiliation'], axis=1)
 # dfj = df.join(dff.set_index('Full Name'), rsuffix='_CL', on='Full Name', validate='m:1')
