@@ -10,13 +10,13 @@ from reportlab.lib import colors
 
 st.set_page_config(layout="wide")
 
-url = "https://docs.google.com/spreadsheets/d/10dpcDXGzsd8Hl_2derZ1kc6wO0tPI0N7IDs0DOGpVr8/edit?usp=sharing"
-conn = st.experimental_connection('gsheets', type=GSheetsConnection, ttl=1)
-# dfgoogle = conn.read(worksheet="362554757")
-#Method 1:
-dff = conn.read(worksheet="Master Contact List2", usecols=list(range(12)))
-dff = dff.dropna(how='all').fillna("").reset_index() #resetting index so that the index stays when merging so when saving back to google I can map the filtered row to the original DF.
-dff.rename(columns = {'index': 'gsIndex'}, inplace = True)
+# url = "https://docs.google.com/spreadsheets/d/10dpcDXGzsd8Hl_2derZ1kc6wO0tPI0N7IDs0DOGpVr8/edit?usp=sharing"
+# conn = st.experimental_connection('gsheets', type=GSheetsConnection, ttl=1)
+# # dfgoogle = conn.read(worksheet="362554757")
+# # Method 1:
+# dff = conn.read(worksheet="Master Contact List2", usecols=list(range(12)))
+# dff = dff.dropna(how='all').fillna("").reset_index() #resetting index so that the index stays when merging so when saving back to google I can map the filtered row to the original DF.
+# dff.rename(columns = {'index': 'gsIndex'}, inplace = True)
 
 
 @st.cache_data
